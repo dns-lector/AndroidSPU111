@@ -7,4 +7,13 @@
     <color name="main_title">#664F0A</color>
     <color name="main_button_background">#0E367A</color>
     <color name="main_button_foreground">#E7D8AA</color>
+
+    <color name="calc_background">#202020</color>
+    <color name="calc_digit_background">#3B3B3B</color>
+    <color name="calc_action_background">#323232</color>
+    <color name="calc_equal_background">#4CC1FE</color>
+    <color name="calc_history_foreground">#929292</color>
+    <color name="calc_result_foreground">#FEFEFE</color>
+
+
 </resources>

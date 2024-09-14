@@ -4,4 +4,5 @@
     <string name="main_title">Основи Android</string>
     <string name="main_calc_button">Калькулятор</string>
 
+    <string name="calc_title">Калькулятор</string>
 </resources>

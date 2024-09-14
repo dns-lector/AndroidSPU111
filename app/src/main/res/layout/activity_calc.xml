@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calc_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/calc_background"
+    tools:context=".CalcActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calc_title"
+        android:textColor="@color/calc_result_foreground"
+        />
+
+    <TextView
+        android:id="@+id/calc_tv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:textColor="@color/calc_history_foreground"
+        tools:text="2 + 3 ="
+        />
+
+    <TextView
+        android:id="@+id/calc_tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:textColor="@color/calc_result_foreground"
+        tools:text="5"
+        />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+            <Button
+                android:text="%"
+                app:backgroundTint="@null"
+                />
+            <Button
+                android:text="%"
+                app:backgroundTint="@null"
+                />
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:text="%"
+                app:backgroundTint="@null"
+                />
+            <Button
+                android:text="%"
+                app:backgroundTint="@null"
+                />
+        </TableRow>
+
+    </TableLayout>
+<!-- Д.З. Завершити розмітку активності "Калькулятор" -->
+</LinearLayout>
