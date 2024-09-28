@@ -3,8 +3,13 @@
 
     <string name="main_title">Основи Android</string>
     <string name="main_calc_button">Калькулятор</string>
+    <string name="main_game_button">Swipe: Гра</string>
 
-    <!--              Calculator       -->
+    <!-- region Animation -->
+    <string name="anim_title">Анімації</string>
+    <!-- endregion -->
+
+    <!-- region Calculator       -->
     <string name="calc_title">Калькулятор</string>
     <string name="calc_btn_percent">%</string>
     <string name="calc_btn_c">C</string>
@@ -34,5 +39,6 @@
     <string name="calc_msg_max_digits">Ліміт цифр досягнуто</string>
     <string name="calc_msg_two_dots">Кома може бути лише одна</string>
     <string name="calc_msg_minus_zero">Нуль не міняє знак</string>
+    <!-- endregion -->
 
 </resources>

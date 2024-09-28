@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         // R - resource
         Button calcButton = findViewById( R.id.main_calc_button ) ;
         calcButton.setOnClickListener( this::onCalcClick );
+
+        findViewById( R.id.main_anim_button ).setOnClickListener( this::onAnimClick );
+        findViewById( R.id.main_game_button ).setOnClickListener( this::onGameClick );
     }
 
     private void onCalcClick( View view ) {
@@ -37,5 +39,19 @@ public class MainActivity extends AppCompatActivity {
                 CalcActivity.class             // Після виконання буде повернення до даного Intent
         ) ;
         startActivity( activityIntent );
+    }
+
+    private void onAnimClick( View view ) {
+        startActivity( new Intent(
+                getApplicationContext(),
+                AnimActivity.class
+        ) ) ;
+    }
+
+    private void onGameClick( View view ) {
+        startActivity( new Intent(
+                getApplicationContext(),
+                GameActivity.class
+        ) ) ;
     }
 }
