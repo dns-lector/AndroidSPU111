@@ -41,4 +41,10 @@
     <string name="calc_msg_minus_zero">Нуль не міняє знак</string>
     <!-- endregion -->
 
+    <!--region Game-->
+    <string name="game_title">Swipe: game</string>
+    <string name="game_main_text">2048</string>
+    <string name="game_score_tpl">SCORE\n%d</string>
+    <!--endregion-->
+
 </resources>
