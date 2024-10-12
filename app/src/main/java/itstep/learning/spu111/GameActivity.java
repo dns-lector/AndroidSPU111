@@ -1,8 +1,11 @@
 package itstep.learning.spu111;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -10,24 +13,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
     private final int N = 4;
+    private final String bestScoreFilename = "best_score.dat";
     private final Random random = new Random();
 
     private int[][] cells = new int[N][N];
     private TextView[][] tvCells = new TextView[N][N];
     private Animation fadeInAnimation;
     private TextView tvScore;
+    private TextView tvBestScore;
     private long score;
+    private long bestScore;
 
     @SuppressLint({"DiscouragedApi", "ClickableViewAccessibility"})
     @Override
@@ -37,6 +50,8 @@ public class GameActivity extends AppCompatActivity {
         // Забезпечення "квадратності" поля - однаковості ширини та висоти
         LinearLayout gameField = findViewById( R.id.game_field );
         tvScore = findViewById( R.id.game_tv_score );
+        tvBestScore = findViewById( R.id.game_tv_best_score );
+        findViewById( R.id.game_btn_undo ).setOnClickListener( this::undoClick );
         gameField.post( () -> {
             // onCreate - подія, коли ще активність не "зібрана" і її розміри невідомі.
             // для того щоб дізнатись розміри необхідно створювати відкладені дії
@@ -118,7 +133,67 @@ public class GameActivity extends AppCompatActivity {
 
     private void startGame() {
         addScore( -score );
+        loadMaxScore();
+        showMaxScore();
         spawnCell();
+    }
+
+    private void undoClick( View view ) {
+        // діалоги
+        new AlertDialog.Builder( this,
+                com.google.android.material.R.style
+                        // .AlertDialog_AppCompat)
+                        // .MaterialAlertDialog_Material3)
+                        .Theme_Material3_DayNight_Dialog)
+                .setIcon( android.R.drawable.ic_dialog_info )
+                .setTitle( "Dialog example")
+                .setMessage( "Приклад модального діалогу" )
+                .setCancelable( false )
+                .setPositiveButton( "Закрити", (dialog, which) -> {})
+                .setNegativeButton( "Вихід", (dialog, which) -> this.finish())
+                .setNeutralButton( "Нова гра", (dialog, which) -> this.startGame())
+                .show();
+    }
+
+    private void saveMaxScore() {
+        /* Робота з файлами
+        В Андроїд файли поділяється на дві категорії
+        - "приватні" файли - файли з репозиторію застосунку, які видаляються
+            при його видаленні. Для роботи з такими файлами спец. дозвіл не потрібен
+        - спільні файли - з інших репозиторіїв "фото/галерея", "завантаження" тощо
+            З такими файлами необхідний дозвіл
+         */
+        try( FileOutputStream fos = openFileOutput(
+                bestScoreFilename,
+                Context.MODE_PRIVATE);
+             DataOutputStream writer = new DataOutputStream( fos )
+        ) {
+            writer.writeLong( bestScore );
+            writer.flush();
+        }
+        catch( IOException ex ) {
+            Log.e( "saveMaxScore", "fos: " + ex.getMessage() );
+        }
+    }
+
+    private void loadMaxScore() {
+        try( FileInputStream fis = openFileInput( bestScoreFilename );
+             DataInputStream reader = new DataInputStream( fis )
+        ) {
+            bestScore = reader.readLong();
+        }
+        catch( IOException ex ) {
+            Log.e( "loadMaxScore", "fis: " + ex.getMessage() );
+        }
+    }
+
+    private void showMaxScore() {
+        tvBestScore.setText(
+                getString(
+                        R.string.game_best_score_tpl,
+                        bestScore
+                )
+        );
     }
 
     private void addScore( long value ) {
@@ -129,6 +204,11 @@ public class GameActivity extends AppCompatActivity {
                         score                       // дані для підставки (за кількістю % у шаблоні)
                 )
         );
+        if( score > bestScore ) {
+            bestScore = score;
+            saveMaxScore();
+            showMaxScore();
+        }
     }
 
     @SuppressLint("DiscouragedApi")

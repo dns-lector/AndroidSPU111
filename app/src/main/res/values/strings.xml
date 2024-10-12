@@ -4,6 +4,11 @@
     <string name="main_title">Основи Android</string>
     <string name="main_calc_button">Калькулятор</string>
     <string name="main_game_button">Swipe: Гра</string>
+    <string name="main_rates_button">Курси валют</string>
+
+
+    <string name="rates_title">Курси валют НБУ</string>
+
 
     <!-- region Animation -->
     <string name="anim_title">Анімації</string>
@@ -45,6 +50,9 @@
     <string name="game_title">Swipe: game</string>
     <string name="game_main_text">2048</string>
     <string name="game_score_tpl">SCORE\n%d</string>
+    <string name="game_best_score_tpl">BEST\n%d</string>
     <!--endregion-->
+
+
 
 </resources>

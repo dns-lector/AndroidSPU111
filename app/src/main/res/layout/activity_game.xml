@@ -46,8 +46,9 @@
                     tools:text="SCORE\n123" />
 
                 <TextView
+                    android:id="@+id/game_tv_best_score"
                     style="@style/game_top_right"
-                    android:text="REST\n567" />
+                    tools:text="BEST\n567" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,6 +64,7 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/game_btn_undo"
                     style="@style/game_bottom_right"
                     android:letterSpacing="0.03"
                     android:text="UNDO"

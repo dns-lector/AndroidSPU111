@@ -49,6 +49,9 @@
         <item name="android:background">@drawable/game_btn_top_right_with_background</item>
         <item name="android:layout_marginVertical">7dp</item>
         <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingHorizontal">1dp</item>
+        <item name="android:drawablePadding">1dp</item>
     </style>
 
 
